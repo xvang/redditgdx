@@ -9,11 +9,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class RedditGDX extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	
+
+
+	public RedditMaster user;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+
+        user = new RedditMaster();
 	}
 
 	@Override
