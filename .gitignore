@@ -62,3 +62,7 @@ build/
 
 ## OS Specific
 .DS_Store
+
+#Oauth Login stuff.
+secret.properties
+
