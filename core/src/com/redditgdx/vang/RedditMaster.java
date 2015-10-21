@@ -35,12 +35,8 @@ public class RedditMaster {
 
         //Then we login.
 
-        Iterator<Map.Entry<String, String>> it = credentials.entrySet().iterator();
 
 
-        for(Iterator<Map.Entry<String, String>> i = credentials.entrySet().iterator(); i.hasNext(); ){
-            System.out.println(i.next().getValue());
-        }
 
 
     }
