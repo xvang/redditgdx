@@ -5,7 +5,7 @@ import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.redditgdx.vang.RedditGDX;
+import com.redditgdx.vang.main.RedditGDX;
 
 public class IOSLauncher extends IOSApplication.Delegate {
     @Override

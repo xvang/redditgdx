@@ -3,7 +3,7 @@ package com.redditgdx.vang.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.redditgdx.vang.RedditGDX;
+import com.redditgdx.vang.main.RedditGDX;
 
 public class HtmlLauncher extends GwtApplication {
 

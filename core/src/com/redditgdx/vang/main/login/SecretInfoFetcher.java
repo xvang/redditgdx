@@ -1,4 +1,4 @@
-package com.redditgdx.vang.login;
+package com.redditgdx.vang.main.login;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
