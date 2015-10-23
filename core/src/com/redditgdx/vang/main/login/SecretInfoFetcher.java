@@ -14,10 +14,9 @@ import java.util.Properties;
  */
 public class SecretInfoFetcher {
 
-    InputStream inputStream;
 
 
-    public Hashtable<String, String> getValues() throws IOException {
+    public Hashtable<String, String> getValues() {
         Hashtable<String, String> returnTable = null;
         try {
             Properties prop = new Properties();
@@ -25,13 +24,9 @@ public class SecretInfoFetcher {
             returnTable = new Hashtable<String, String>();
 
 
-            inputStream = new FileInputStream(propFileName);
+            InputStream inputStream = new FileInputStream(propFileName);
 
-            if (inputStream != null) {
-                prop.load(inputStream);
-            } else {
-                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-            }
+            prop.load(inputStream);
 
             returnTable.put("access", prop.getProperty("access"));
             returnTable.put("refresh", prop.getProperty("refresh"));
@@ -39,12 +34,12 @@ public class SecretInfoFetcher {
             returnTable.put("name", prop.getProperty("name"));
             returnTable.put("uri", prop.getProperty("uri"));
 
+            inputStream.close();
 
         } catch (Exception e) {
             System.out.println("Exception: " + e);
-        } finally {
-            inputStream.close();
         }
+
         return returnTable;
     }
 }

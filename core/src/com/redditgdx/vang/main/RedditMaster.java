@@ -23,7 +23,6 @@ public class RedditMaster {
 
         r = login.logInNow();
 
-
     }
 
 
