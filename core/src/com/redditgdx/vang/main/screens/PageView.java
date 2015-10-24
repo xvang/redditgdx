@@ -23,9 +23,10 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
     private Subreddit localSubreddit;
 
     private LinkedList<SingleScreen> singleScreens;
-
+    private SingleScreen currentScreen;
 
     public PageView(){
+
     }
 
     //Within the 'pack' object is a subreddit object.
@@ -37,7 +38,10 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
 
         singleScreens = new LinkedList<SingleScreen>();
 
-        
+        initScreens();
+
+        currentScreen = singleScreens.getFirst();
+
         Gdx.input.setInputProcessor(this);
 
     }
@@ -55,13 +59,13 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
 
         localBatch.begin();
 
-        singleScreens.getFirst().render();
+        currentScreen.render();
 
         localBatch.end();
     }
 
 
-    public void init(){
+    public void initScreens(){
 
     }
 
