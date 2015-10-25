@@ -8,6 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.redditgdx.vang.main.screens.PageView;
 
 import net.dean.jraw.http.SubmissionRequest;
+import net.dean.jraw.models.Listing;
+import net.dean.jraw.models.Submission;
+import net.dean.jraw.models.Subreddit;
+import net.dean.jraw.paginators.Sorting;
+import net.dean.jraw.paginators.SubredditPaginator;
+import net.dean.jraw.paginators.TimePeriod;
 
 public class RedditGDX extends Game {
 
@@ -26,10 +32,20 @@ public class RedditGDX extends Game {
         user = new RedditMaster();
 
 
-        SubmissionRequest request = new SubmissionRequest("");
+		SubredditPaginator sp = new SubredditPaginator(user.r);
+
+		sp.setLimit(100);
+        sp.setSorting(Sorting.TOP);
+        sp.setTimePeriod(TimePeriod.DAY);
+
+        sp.setSubreddit("pics");
+
+        sp.next(true);
+        Listing<Submission> list = sp.getCurrentListing();
+
+        System.out.println(list.get(0).getAuthor());
 
         PageView page = new PageView(user.getAllTheInfo("pics"), batch);
-
 
         this.setScreen(page);
 

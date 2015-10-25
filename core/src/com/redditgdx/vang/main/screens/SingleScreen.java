@@ -19,13 +19,13 @@ public class SingleScreen {
     private static final ImgUr imgur = new ImgUr("5fc1f2a679ddb71");
 
     public SingleScreen(){
-        ImageResponse imgurResponse;
+       /* ImageResponse imgurResponse;
 
         try{
             imgurResponse = imgur.call(new ImageRequest(""));
         } catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 
     public void render(){
