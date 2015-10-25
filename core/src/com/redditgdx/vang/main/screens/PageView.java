@@ -66,7 +66,8 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
 
 
     public void initScreens(){
-
+        for(int x = 0; x < 1; x++)
+            singleScreens.add(new SingleScreen());
     }
 
 

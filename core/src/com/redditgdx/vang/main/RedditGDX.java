@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.redditgdx.vang.main.screens.PageView;
 
+import net.dean.jraw.http.SubmissionRequest;
+
 public class RedditGDX extends Game {
 
 
@@ -22,6 +24,9 @@ public class RedditGDX extends Game {
 		img = new Texture("badlogic.jpg");
 
         user = new RedditMaster();
+
+
+        SubmissionRequest request = new SubmissionRequest("");
 
         PageView page = new PageView(user.getAllTheInfo("pics"), batch);
 
