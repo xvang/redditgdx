@@ -22,6 +22,7 @@ public class RedditGDX extends Game {
 	Texture img;
 
 
+
 	public RedditMaster user;
 	@Override
 	public void create () {
@@ -32,20 +33,10 @@ public class RedditGDX extends Game {
         user = new RedditMaster();
 
 
-		SubredditPaginator sp = new SubredditPaginator(user.r);
 
-		sp.setLimit(100);
-        sp.setSorting(Sorting.TOP);
-        sp.setTimePeriod(TimePeriod.DAY);
+        RedditPackage pack = user.getAllTheInfo("pics", "top", "day", 10);
 
-        sp.setSubreddit("pics");
-
-        sp.next(true);
-        Listing<Submission> list = sp.getCurrentListing();
-
-        System.out.println(list.get(0).getAuthor());
-
-        PageView page = new PageView(user.getAllTheInfo("pics"), batch);
+        PageView page = new PageView(pack);
 
         this.setScreen(page);
 
@@ -58,4 +49,11 @@ public class RedditGDX extends Game {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render();
 	}
+
+
+	@Override
+    public void dispose(){
+        batch.dispose();
+
+    }
 }
