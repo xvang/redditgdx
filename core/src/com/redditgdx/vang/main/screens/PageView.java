@@ -110,12 +110,13 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
 
         for(int x = 0; x < length; x++){
 
+            System.out.println(submissionPointer.get(x).getUrl());
 
             if(submissionPointer.get(x).isSelfPost()){
 
                 singleScreens.add(new TextScreen(submissionPointer.get(x), scrollPaneTable));
             }
-            else{
+            else if (submissionPointer.get(x).getUrl().contains("imgur.com")){
                 singleScreens.add(new LinkScreen(submissionPointer.get(x), scrollPaneTable));
             }
 
