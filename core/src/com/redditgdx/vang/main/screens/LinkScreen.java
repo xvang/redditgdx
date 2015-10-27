@@ -5,17 +5,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 
-import com.github.imgur.api.image.ImageRequest;
-import com.github.imgur.api.image.ImageResponse;
-import com.redditgdx.vang.main.Asset;
 
+import com.github.imgur.api.image.ImageResponse;
 import net.dean.jraw.models.Submission;
 
-import java.io.InputStream;
-import java.net.URL;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 
 public class LinkScreen extends SingleScreen {
@@ -40,7 +36,7 @@ public class LinkScreen extends SingleScreen {
 
 
 
-        
+
     }
 
     /*public static Drawable LoadImageFromWebOperations(String url) {

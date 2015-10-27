@@ -7,13 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.redditgdx.vang.main.screens.PageView;
 
-import net.dean.jraw.http.SubmissionRequest;
-import net.dean.jraw.models.Listing;
-import net.dean.jraw.models.Submission;
-import net.dean.jraw.models.Subreddit;
-import net.dean.jraw.paginators.Sorting;
-import net.dean.jraw.paginators.SubredditPaginator;
-import net.dean.jraw.paginators.TimePeriod;
+
 
 public class RedditGDX extends Game {
 

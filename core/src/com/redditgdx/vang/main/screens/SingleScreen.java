@@ -9,9 +9,7 @@ import com.redditgdx.vang.main.Asset;
 import net.dean.jraw.models.Submission;
 
 
-/**
- * Created by xeng on 10/24/15.
- */
+
 
 
 public abstract class SingleScreen {
@@ -83,7 +81,6 @@ public abstract class SingleScreen {
     public abstract void loadContent();
 
     public abstract void createView();
-
 
 
 
