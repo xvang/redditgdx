@@ -18,7 +18,7 @@ public class Asset {
 
 
 
-
+    public int test;
 
     public void dispose(){
         verdana.dispose();
