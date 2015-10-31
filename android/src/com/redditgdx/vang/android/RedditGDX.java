@@ -1,12 +1,11 @@
-package com.redditgdx.vang.main;
+package com.redditgdx.vang.android;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.redditgdx.vang.main.screens.PageView;
-
+import com.redditgdx.vang.android.screens.PageView;
 
 
 public class RedditGDX extends Game {
@@ -14,6 +13,7 @@ public class RedditGDX extends Game {
 
 	public SpriteBatch batch;
 	Texture img;
+
 
 
 	public RedditMaster user;
@@ -24,6 +24,7 @@ public class RedditGDX extends Game {
 		img = new Texture("badlogic.jpg");
 
         user = new RedditMaster();
+
 
 
         RedditPackage pack = user.getAllTheInfo("pics", "top", "day", 10);

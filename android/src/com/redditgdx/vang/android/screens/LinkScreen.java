@@ -1,4 +1,6 @@
-package com.redditgdx.vang.main.screens;
+package com.redditgdx.vang.android.screens;
+
+import android.graphics.drawable.Drawable;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -7,7 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import net.dean.jraw.models.Submission;
 
-
+import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,15 +38,6 @@ public class LinkScreen extends SingleScreen {
 
     }
 
-    /*public static Drawable LoadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "src name");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
-    }*/
 
     public void getHashFromURL(String url){
 

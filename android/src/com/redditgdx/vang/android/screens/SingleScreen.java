@@ -1,15 +1,11 @@
-package com.redditgdx.vang.main.screens;
+package com.redditgdx.vang.android.screens;
 
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
-import com.redditgdx.vang.main.Asset;
+import com.redditgdx.vang.android.Asset;
 
 import net.dean.jraw.models.Submission;
-
-
-
 
 
 public abstract class SingleScreen {
