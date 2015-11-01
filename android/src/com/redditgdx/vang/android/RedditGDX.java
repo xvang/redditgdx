@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.redditgdx.vang.android.mock.MockLink;
+import com.redditgdx.vang.android.mock.MockScreen;
 import com.redditgdx.vang.android.screens.PageView;
 
 
@@ -32,6 +34,8 @@ public class RedditGDX extends Game {
         PageView page = new PageView(pack);
 
         this.setScreen(page);
+
+        //this.setScreen(new MockScreen());
 
 
 	}

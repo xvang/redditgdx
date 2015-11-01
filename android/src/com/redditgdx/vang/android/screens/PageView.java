@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -20,8 +21,6 @@ import java.util.LinkedList;
  *
  */
 public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
-
-
 
 
     private LinkedList<SingleScreen> singleScreens;
@@ -56,10 +55,19 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
         stage = new Stage();
 
         scrollPaneTable = new Table();
+        scrollPaneTable.setFillParent(true);
         scrollpane = new ScrollPane(scrollPaneTable);
+        scrollpane.setScrollingDisabled(true, false);
+
 
         localPack = pack;
         singleScreens = new LinkedList<SingleScreen>();
+
+
+        /*scrollpane.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        scrollpane.setPosition( 20, Gdx.graphics.getWidth() * 7 / 8);
+*/
+        scrollpane.setFillParent(true);
 
         initScreens();
 
@@ -91,8 +99,8 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
-        stage.draw();
+        this.stage.act();
+        this.stage.draw();
 
     }
 
@@ -123,15 +131,27 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
 
 
 
-    public void changeToNextView(){
+    public void changeToNextView(int increment){
 
         int currentPosition = singleScreens.indexOf(currentScreen);
 
-        if (currentPosition < singleScreens.size() - 1) {
-            currentScreen = singleScreens.get(currentPosition + 1);
-
-            currentScreen.onViewing();
+        //combine this if-else somehow...?
+        if(increment < 0){
+            if(currentPosition > 0){
+                currentScreen = singleScreens.get(currentPosition + increment);
+                currentScreen.onViewing();
+            }
         }
+
+        else{
+            if(currentPosition < singleScreens.size() - 1){
+                currentScreen = singleScreens.get(currentPosition + increment);
+                currentScreen.onViewing();
+            }
+        }
+
+
+
 
 
     }
@@ -173,9 +193,12 @@ public class PageView extends ScreenAdapter implements Runnable, InputProcessor{
 
 
         if (td_X - x > (width / 3)){
-            changeToNextView();
+            changeToNextView(1);
         }
 
+        else if(td_X - x < -(width / 3)){
+            changeToNextView(-1);
+        }
         return false;
     }
 

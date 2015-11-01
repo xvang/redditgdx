@@ -1,6 +1,7 @@
 package com.redditgdx.vang.android.screens;
 
 
+import com.badlogic.gdx.Net;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import com.redditgdx.vang.android.Asset;
@@ -8,15 +9,13 @@ import com.redditgdx.vang.android.Asset;
 import net.dean.jraw.models.Submission;
 
 
-public abstract class SingleScreen {
+public abstract class SingleScreen implements Net.HttpResponseListener{
 
 
 
     public static final Asset assets = new Asset();
 
     public Submission  submission;
-
-
 
 
     public static Table tablePointer;
@@ -45,18 +44,6 @@ public abstract class SingleScreen {
     }
 
 
-    //Creating the labels that will go in the table in the scrollpane in pageview.java
-    //tablePointer is a pointer to that table.
-    public void createTextView(){
-
-
-
-    }
-    public void createLinkView(){
-
-    }
-
-
     //function is called when this specific SingleScreen is viewed.
     //The table is reset, and populated by whatever is in this screen, text or link.
     public void onViewing(){
@@ -66,16 +53,35 @@ public abstract class SingleScreen {
         tablePointer.clearChildren();
         tablePointer.reset();
 
-        loadContent();
+        this.loadContent();
     }
 
-
+    //called when this becomes current screen.
     public abstract void loadContent();
 
+
+    //called during instantiation.
     public abstract void createView();
 
 
 
     public void dispose(){
+    }
+
+
+
+    @Override
+    public void handleHttpResponse (Net.HttpResponse httpResponse) {
+    }
+
+
+    @Override
+    public void failed (Throwable t) {
+    }
+
+
+    @Override
+    public void cancelled () {
+
     }
 }

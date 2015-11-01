@@ -2,7 +2,12 @@ package com.redditgdx.vang.android.screens;
 
 import android.graphics.drawable.Drawable;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Net;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
@@ -20,7 +25,9 @@ public class LinkScreen extends SingleScreen {
 
 
     String hashCode;
-
+    Texture textureFromWeb;
+    Image imageFromWeb;
+    String url;
     public LinkScreen(){
 
     }
@@ -29,9 +36,6 @@ public class LinkScreen extends SingleScreen {
     public LinkScreen(Submission sub, Table scrollPaneTable){
         super(sub, scrollPaneTable);
 
-        //'hashCode' is defined in this function.
-        getHashFromURL(sub.getUrl());
-
 
 
 
@@ -39,51 +43,76 @@ public class LinkScreen extends SingleScreen {
     }
 
 
-    public void getHashFromURL(String url){
 
-        hashCode = url;
-
-        url = url.replace("https://i.imgur.com/", "");
-        url = url.replace("http://imgur.com/", "");
-        url = url.replace("http://i.imgur.com/", "");
-        url = url.replace(".png", "");
-        url = url.replace(".jpg", "");
-
-        url = url.replace(".jpeg", "");
-        url = url.replace("", "");
-
-        if(url.contains("?")){
-            int position = url.indexOf("?");
-
-            url = url.substring(0, position);
-
-        }
-
-
-        //If we get to here, then that means they are equal.
-        //url did not change.
-        if (hashCode.equals(url)) {
-            String errorMessage = "URL WAS NOT PARSED: " + url;
-
-            Logger.getAnonymousLogger().log(Level.SEVERE, errorMessage);
-        }
-        else{
-            hashCode = url;
-        }
-
-
-    }
     @Override
     public void createView(){
+        fetchImagefromWeb();
 
+
+    }
+
+    public void fetchImagefromWeb(){
+        String httpMethod = Net.HttpMethods.GET;
+        String requestContent = null;
+
+        url = submission.getUrl();
+
+
+        Net.HttpRequest httpRequest = new Net.HttpRequest(httpMethod);
+        httpRequest.setUrl(url);
+        httpRequest.setContent(requestContent);
+        Gdx.net.sendHttpRequest(httpRequest, this);
     }
 
     @Override
     public void loadContent(){
-        System.out.println("LINK");
+
+
         Label temp = new Label("LINK POST HERE", new Label.LabelStyle(assets.verdana, Color.WHITE));
 
-        tablePointer.add(temp);
+
+
+
+
+        tablePointer.add(imageFromWeb).width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight());
+    }
+
+
+    @Override
+    public void handleHttpResponse (Net.HttpResponse httpResponse) {
+
+
+        final int statusCode = httpResponse.getStatus().getStatusCode();
+        // We are not in main thread right now so we need to post to main thread for ui updates
+
+        if (statusCode != 200) {
+            Gdx.app.log("NetAPITest", "An error ocurred since statusCode is not OK");
+        }
+
+        else{
+            try{
+                final byte[] rawImageBytes = httpResponse.getResult();
+                Gdx.app.postRunnable(new Runnable() {
+                    public void run () {
+                        Pixmap pixmap = new Pixmap(rawImageBytes, 0, rawImageBytes.length);
+                        textureFromWeb = new Texture(pixmap);
+                        imageFromWeb = new Image(textureFromWeb);
+                        System.out.println(url);
+                    }
+                });
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+    }
+
+
+    @Override
+    public void failed(Throwable t){
+        t.printStackTrace();
     }
 
 

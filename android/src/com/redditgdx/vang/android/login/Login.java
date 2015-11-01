@@ -1,9 +1,11 @@
 package com.redditgdx.vang.android.login;
 
 import net.dean.jraw.RedditClient;
+import net.dean.jraw.http.NetworkException;
 import net.dean.jraw.http.UserAgent;
 import net.dean.jraw.http.oauth.Credentials;
 import net.dean.jraw.http.oauth.OAuthData;
+import net.dean.jraw.http.oauth.OAuthException;
 
 /**
  * Created by xeng on 10/21/15.
@@ -48,12 +50,15 @@ public class Login {
             OAuthData authData = reddit.getOAuthHelper().easyAuth(credentials);
             reddit.authenticate(authData);
             return reddit;
-        }catch(Exception e){
+        }catch(NetworkException  | OAuthException e){
 
 
 
             System.out.println(e.getMessage());
+        }catch(Exception e){
+            System.out.println("IT WAS A DIFFERENT EXCEPTION");
         }
+
 
 
 
